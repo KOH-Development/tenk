@@ -7,8 +7,8 @@ import { icon } from "./icon";
 
 const metadata: tenk.InitialMetadata = {
   uri: "https://bafybeifry66qavug4hbo2kaa5brsltcr73yeax4b6sstf2dbrlr2kj6gj4.ipfs.dweb.link",
-  name: "NEAR Extinct Heroes",
-  symbol: "extinctheroes",
+  name: "Pixelmech Warriors",
+  symbol: "PMWR",
   icon,
 };
 
@@ -23,19 +23,19 @@ const sale: tenk.Sale = {
   initial_royalties: {
     percent: 10_000,
     accounts: {
-      "tenk.sputnik-dao.near": 2_000,
-      "neh.sputnik-dao.near": 5_000,
-      "anthonypacheco.near": 2_000,
-      "isaacwilson.near": 1_000,
+      "pixelmechwarriors.near": 4_000,
+      "rovendoug.near": 2_000,
+      "offseason.near": 2_000,
+      "shakiev.near": 2_000,
     },
   },
   royalties: {
-    percent: 800,
+    percent: 500,
     accounts: {
-      "tenk.sputnik-dao.near": 2_000,
-      "neh.sputnik-dao.near": 5_000,
-      "anthonypacheco.near": 2_000,
-      "isaacwilson.near": 1_000,
+      "pixelmechwarriors.near": 4_000,
+      "rovendoug.near": 2_000,
+      "offseason.near": 2_000,
+      "shakiev.near": 2_000,
     },
   },
 };

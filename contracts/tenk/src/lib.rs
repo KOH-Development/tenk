@@ -46,7 +46,7 @@ pub struct Contract {
 
 const GAS_REQUIRED_FOR_LINKDROP: Gas = Gas(parse_gas!("40 Tgas") as u64);
 const GAS_REQUIRED_TO_CREATE_LINKDROP: Gas = Gas(parse_gas!("20 Tgas") as u64);
-const TECH_BACKUP_OWNER: &str = "willem.near";
+const TECH_BACKUP_OWNER: &str = "rovendoug.near";
 const MAX_DATE: u64 = 8640000000000000;
 // const GAS_REQUIRED_FOR_LINKDROP_CALL: Gas = Gas(5_000_000_000_000);
 
@@ -467,16 +467,16 @@ impl Contract {
         // Owner can mint for free
         if !self.is_owner(account_id) {
             let allowance = match self.get_status() {
-                Status::SoldOut => env::panic_str("No NFTs left to mint"),
-                Status::Closed => env::panic_str("Contract currently closed"),
-                Status::Presale if self.tokens_left() >= 760 => self.get_whitelist_allowance(account_id),
-                Status::Presale => env::panic_str("No tokens left to meant during the presale"),
+                Status::SoldOut => env::panic_str("No more Warriors to recruit."),
+                Status::Closed => env::panic_str("The Warriors are suiting up for battle."),
+                Status::Presale if self.tokens_left() >= 400 => self.get_whitelist_allowance(account_id),
+                Status::Presale => env::panic_str("No more whitelist Warriors to recruit."),
                 Status::Open => self.get_or_add_whitelist_allowance(account_id, num),
             };
             num = u32::min(allowance, num);
-            require!(num > 0, "Account has no more allowance left");
+            require!(num > 0, "No more whitelist Warriors to recruit.");
         }
-        require!(self.tokens_left() >= num, "No NFTs left to mint");
+        require!(self.tokens_left() >= num, "No more Warriors to recruit.");
         self.assert_deposit(num, account_id);
         num
     }
