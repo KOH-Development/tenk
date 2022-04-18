@@ -10,12 +10,12 @@ export async function main({ account, argv }: Context) {
   }
   let contract = new Contract(account, contractId);
   const royalties = {
-    percent: 500,
+    percent: 600,
     accounts: {
-      "pixelmechwarriors.near": 4000,
-      "rovendoug.near": 2000,
-      "offseason.near": 2000,
-      "shakiev.near": 2000
+      "pixelmechwarriors.near": 4_000,
+      "rovendoug.near": 2_000,
+      "offseason.near": 2_000,
+      "shakiev.near": 2_000
     }
   };
   let res = await contract.update_royalties({ royalties });

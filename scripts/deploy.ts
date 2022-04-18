@@ -7,35 +7,34 @@ import { icon } from "./icon";
 
 const metadata: tenk.InitialMetadata = {
   uri: "https://bafybeifry66qavug4hbo2kaa5brsltcr73yeax4b6sstf2dbrlr2kj6gj4.ipfs.dweb.link",
-  name: "Pixelmech Warriors",
+  name: "Pixlemech Warriors",
   symbol: "PMWR",
   icon,
 };
 
-const size = 2000;
+const size = 600;
 
 const sale: tenk.Sale = {
-  presale_start: Date.parse("03 Mar 2022 18:00 UTC"),
-  public_sale_start: Date.parse("04 Mar 2022 18:00 UTC"),
+  presale_start: Date.parse("19 Apr 2022 18:00 UTC"),
+  public_sale_start: Date.parse("19 Apr 2022 19:00 UTC"),
   price: NEAR.parse("5 N").toJSON(),
 
-  allowance: 6,
+  allowance: 2,
   initial_royalties: {
     percent: 10_000,
     accounts: {
-      "pixelmechwarriors.near": 4_000,
-      "rovendoug.near": 2_000,
+      "pixlemechwarriors.near": 6_000,
       "offseason.near": 2_000,
-      "shakiev.near": 2_000,
+      "shakiev.near": 2_000
     },
   },
   royalties: {
-    percent: 500,
+    percent: 600,
     accounts: {
       "pixelmechwarriors.near": 4_000,
       "rovendoug.near": 2_000,
       "offseason.near": 2_000,
-      "shakiev.near": 2_000,
+      "shakiev.near": 2_000
     },
   },
 };
@@ -73,8 +72,7 @@ export async function main({ account, nearAPI, argv, near }: Context) {
   }
   let res = await tx.signAndSend();
   console.log(
-    `https://explorer${isTestnet ? ".testnet" : ""}.near.org/transactions/${
-      res.transaction_outcome.id
+    `https://explorer${isTestnet ? ".testnet" : ""}.near.org/transactions/${res.transaction_outcome.id
     }`
   );
   //@ts-ignore
