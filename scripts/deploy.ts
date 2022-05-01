@@ -6,36 +6,37 @@ import { binPath } from "./utils";
 import {icon} from "./icon";
 
 const metadata: tenk.InitialMetadata = {
-  uri: "https://bafybeihmtke7glg2aec5oav5btzlv6ec4fxkbbh4xjre4x5ipaqdxroahe.ipfs.dweb.link",
-  name: "TENK NFT",
-  symbol: "TENK",
+  uri: "https://bafybeicg2vwlwvx7psn2zxdxe4bu3f6lms3gdf64xixsv5tmm2wksxygj4.ipfs.dweb.link/",
+  name: "Pixelmech Warriors NFT",
+  symbol: "PMW0",
   icon,
 };
 
-const size = 10_000;
+const size = 750;
  
 const sale: tenk.Sale = {
-  price: NEAR.parse("1 N").toJSON(),
-  // presale_price: NEAR.parse("6 N").toJSON(),
-  mint_rate_limit: 6,
-  // presale_start: Date.parse("05 April 2022 4:00 PM UTC"),
-  public_sale_start: Date.now(),
-  // initial_royalties: {
-  //   percent: 10_000,
-  //   accounts: {
-  //     "tenk.sputnik-dao.near": 2_000,
-  //     "project.sputnik-dao.near": 2_000,
-  //     "mistcop.near": 6_000,
-  //   },
-  // },
-  // royalties: {
-  //   percent: 500,
-  //   accounts: {
-  //     "tenk.sputnik-dao.near": 4_000,
-  //     "project.sputnik-dao.near": 2_000,
-  //     "mistcop.near": 4_000,
-  //   },
-  // },
+  price: NEAR.parse("5 N").toJSON(),
+  presale_price: NEAR.parse("4 N").toJSON(),
+  mint_rate_limit: 5,
+  presale_start: Date.parse("1 May 2022 6:00 AM UTC"),
+  public_sale_start: Date.parse("1 May 2022 6:00 PM UTC"),
+  allowance: 5,
+  initial_royalties: {
+    percent: 10000,
+    accounts: {
+      "pixelmechwarriors.near": 6000,
+      "offseason.near": 2000,
+      "shakiev.near": 2000,
+    },
+  },
+  royalties: {
+    percent: 600,
+    accounts: {
+      "pixelmechwarriors.near": 4000,
+      "offseason.near": 3000,
+      "shakiev.near": 3000,
+    },
+  },
 };
 
 
@@ -60,7 +61,10 @@ export async function main({ account, nearAPI, argv, near }: Context) {
     sale,
   };
 
+  console.log(JSON.stringify(initialArgs, null, 2));
+
   const contract = new tenk.Contract(account, contractId);
+  console.log(JSON.stringify(contract));
 
   const tx = account
     .createTransaction(contractId)
