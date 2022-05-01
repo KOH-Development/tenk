@@ -96,6 +96,16 @@ impl Contract {
     ) -> Self {
         Self::new(owner_id, metadata.into(), size, sale.unwrap_or_default())
     }
+        
+    #[init(ignore_state)]
+    pub fn migrate_meta(
+        owner_id: AccountId,
+        metadata: InitialMetadata,
+        size: u32,
+        sale: Option<Sale>,
+    )-> Self {
+        Self::new(owner_id, metadata.into(), size, sale.unwrap_or_default())
+    }
 
     #[init]
     pub fn new(owner_id: AccountId, metadata: NFTContractMetadata, size: u32, sale: Sale) -> Self {

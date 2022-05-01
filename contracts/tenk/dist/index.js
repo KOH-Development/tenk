@@ -1166,6 +1166,26 @@ var Contract = /** @class */ (function () {
         var _a, _b;
         return helper_1.transactions.functionCall("new_default_meta", args, (_a = options === null || options === void 0 ? void 0 : options.gas) !== null && _a !== void 0 ? _a : helper_1.DEFAULT_FUNCTION_CALL_GAS, (_b = options === null || options === void 0 ? void 0 : options.attachedDeposit) !== null && _b !== void 0 ? _b : new helper_1.BN(0));
     };
+    Contract.prototype.migrate_meta = function (args, options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _b = (_a = helper_1.providers).getTransactionLastResult;
+                        return [4 /*yield*/, this.migrate_metaRaw(args, options)];
+                    case 1: return [2 /*return*/, _b.apply(_a, [_c.sent()])];
+                }
+            });
+        });
+    };
+    Contract.prototype.migrate_metaRaw = function (args, options) {
+        return this.account.functionCall(__assign({ contractId: this.contractId, methodName: "migrate_meta", args: args }, options));
+    };
+    Contract.prototype.migrate_metaTx = function (args, options) {
+        var _a, _b;
+        return helper_1.transactions.functionCall("migrate_meta", args, (_a = options === null || options === void 0 ? void 0 : options.gas) !== null && _a !== void 0 ? _a : helper_1.DEFAULT_FUNCTION_CALL_GAS, (_b = options === null || options === void 0 ? void 0 : options.attachedDeposit) !== null && _b !== void 0 ? _b : new helper_1.BN(0));
+    };
     Contract.prototype.new = function (args, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, _b;

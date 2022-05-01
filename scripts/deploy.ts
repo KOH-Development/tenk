@@ -18,9 +18,9 @@ const sale: tenk.Sale = {
   price: NEAR.parse("5 N").toJSON(),
   presale_price: NEAR.parse("4 N").toJSON(),
   mint_rate_limit: 5,
-  presale_start: Date.parse("1 May 2022 6:00 AM UTC"),
+  presale_start: Date.parse("1 May 2022 12:00 PM UTC"),
   public_sale_start: Date.parse("1 May 2022 6:00 PM UTC"),
-  allowance: 5,
+  allowance: null,
   initial_royalties: {
     percent: 10000,
     accounts: {
@@ -61,21 +61,26 @@ export async function main({ account, nearAPI, argv, near }: Context) {
     sale,
   };
 
-  console.log(JSON.stringify(initialArgs, null, 2));
+  ///console.log(JSON.stringify(initialArgs, null, 2));
 
   const contract = new tenk.Contract(account, contractId);
-  console.log(JSON.stringify(contract));
-
+  console.log(JSON.stringify(account, null, 2));
   const tx = account
     .createTransaction(contractId)
     .deployContract(contractBytes);
 
+    console.log(await contractAccount.hasDeployedContract());
   if (await contractAccount.hasDeployedContract()) {
     console.log(`initializing with: \n${JSON.stringify(initialArgs, null, 2)}`);
     tx.actions.push(
       contract.new_default_metaTx(initialArgs, { gas: Gas.parse("50Tgas") })
     );
+  } else {
+    tx.actions.push(
+      contract.migrate_metaTx(initialArgs, { gas: Gas.parse("50Tgas") })
+    );
   }
+
   let res = await tx.signAndSend();
   console.log(
     `https://explorer${isTestnet ? ".testnet" : ""}.near.org/transactions/${

@@ -471,6 +471,60 @@
     "Initial__Result": {
       "$ref": "#/definitions/u64"
     },
+    "MigrateMeta": {
+      "additionalProperties": false,
+      "contractMethod": "change",
+      "properties": {
+        "args": {
+          "additionalProperties": false,
+          "properties": {
+            "metadata": {
+              "$ref": "#/definitions/InitialMetadata"
+            },
+            "owner_id": {
+              "$ref": "#/definitions/AccountId"
+            },
+            "sale": {
+              "$ref": "#/definitions/Sale"
+            },
+            "size": {
+              "$ref": "#/definitions/u32"
+            }
+          },
+          "required": [
+            "owner_id",
+            "metadata",
+            "size"
+          ],
+          "type": "object"
+        },
+        "options": {
+          "additionalProperties": false,
+          "properties": {
+            "attachedDeposit": {
+              "$ref": "#/definitions/Balance",
+              "default": "0",
+              "description": "Units in yoctoNear"
+            },
+            "gas": {
+              "default": "30000000000000",
+              "description": "Units in gas",
+              "pattern": "[0-9]+",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "args",
+        "options"
+      ],
+      "type": "object"
+    },
+    "MigrateMeta__Result": {
+      "type": "null"
+    },
     "MintRateLimit": {
       "additionalProperties": false,
       "contractMethod": "view",

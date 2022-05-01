@@ -372,6 +372,8 @@ nft-tokens-for-owner: function(account-id: account-id, from-index: option<u128>,
 ///  change
 new-default-meta: function(owner-id: account-id, metadata: initial-metadata, size: u32, sale: option<sale>)
 ///  change
+migrate-meta: function(owner-id: account-id, metadata: initial-metadata, size: u32, sale: option<sale>)
+///  change
 new: function(owner-id: account-id, metadata: nft-contract-metadata, size: u32, sale: sale)
 ///  change
 nft-mint: function(token-id: token-id, token-owner-id: account-id, token-metadata: token-metadata) -> token

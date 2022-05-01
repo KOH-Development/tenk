@@ -1091,6 +1091,24 @@ export declare class Contract {
         size: u32;
         sale?: Sale;
     }, options?: ChangeMethodOptions): transactions.Action;
+    migrate_meta(args: {
+        owner_id: AccountId;
+        metadata: InitialMetadata;
+        size: u32;
+        sale?: Sale;
+    }, options?: ChangeMethodOptions): Promise<void>;
+    migrate_metaRaw(args: {
+        owner_id: AccountId;
+        metadata: InitialMetadata;
+        size: u32;
+        sale?: Sale;
+    }, options?: ChangeMethodOptions): Promise<providers.FinalExecutionOutcome>;
+    migrate_metaTx(args: {
+        owner_id: AccountId;
+        metadata: InitialMetadata;
+        size: u32;
+        sale?: Sale;
+    }, options?: ChangeMethodOptions): transactions.Action;
     new(args: {
         owner_id: AccountId;
         metadata: NftContractMetadata;
@@ -2003,6 +2021,30 @@ export interface NewDefaultMeta {
     };
 }
 export declare type NewDefaultMeta__Result = void;
+/**
+*
+* @contractMethod change
+*/
+export interface MigrateMeta {
+    args: {
+        owner_id: AccountId;
+        metadata: InitialMetadata;
+        size: u32;
+        sale?: Sale;
+    };
+    options: {
+        /** Units in gas
+        * @pattern [0-9]+
+        * @default "30000000000000"
+        */
+        gas?: string;
+        /** Units in yoctoNear
+        * @default "0"
+        */
+        attachedDeposit?: Balance;
+    };
+}
+export declare type MigrateMeta__Result = void;
 /**
 *
 * @contractMethod change

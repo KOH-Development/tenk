@@ -1285,6 +1285,30 @@ export class Contract {
   }, options?: ChangeMethodOptions): transactions.Action {
     return transactions.functionCall("new_default_meta", args, options?.gas ?? DEFAULT_FUNCTION_CALL_GAS, options?.attachedDeposit ?? new BN(0))
   }
+  async migrate_meta(args: {
+    owner_id: AccountId;
+    metadata: InitialMetadata;
+    size: u32;
+    sale?: Sale;
+  }, options?: ChangeMethodOptions): Promise<void> {
+    return providers.getTransactionLastResult(await this.migrate_metaRaw(args, options));
+  }
+  migrate_metaRaw(args: {
+    owner_id: AccountId;
+    metadata: InitialMetadata;
+    size: u32;
+    sale?: Sale;
+  }, options?: ChangeMethodOptions): Promise<providers.FinalExecutionOutcome> {
+    return this.account.functionCall({contractId: this.contractId, methodName: "migrate_meta", args, ...options});
+  }
+  migrate_metaTx(args: {
+    owner_id: AccountId;
+    metadata: InitialMetadata;
+    size: u32;
+    sale?: Sale;
+  }, options?: ChangeMethodOptions): transactions.Action {
+    return transactions.functionCall("migrate_meta", args, options?.gas ?? DEFAULT_FUNCTION_CALL_GAS, options?.attachedDeposit ?? new BN(0))
+  }
   async new(args: {
     owner_id: AccountId;
     metadata: NftContractMetadata;
@@ -2266,6 +2290,31 @@ export interface NewDefaultMeta {
   
 }
 export type NewDefaultMeta__Result = void;
+/**
+* 
+* @contractMethod change
+*/
+export interface MigrateMeta {
+  args: {
+    owner_id: AccountId;
+    metadata: InitialMetadata;
+    size: u32;
+    sale?: Sale;
+  };
+  options: {
+    /** Units in gas
+    * @pattern [0-9]+
+    * @default "30000000000000"
+    */
+    gas?: string;
+    /** Units in yoctoNear
+    * @default "0"
+    */
+    attachedDeposit?: Balance;
+  }
+  
+}
+export type MigrateMeta__Result = void;
 /**
 * 
 * @contractMethod change
